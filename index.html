@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ExamPro - Online Examination System</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Exam<span>Pro</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#login">
+            Login
+        </a>
+
+        <!-- REGISTER LINK ADDED -->
+        <a href="#register"
+           onclick="showRegister()">
+            Register
+        </a>
+
+        <a href="admin.html">
+            Admin
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<section id="home"
+         class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Online Examination System
+        </h1>
+
+        <p>
+            A simple and secure platform
+            for conducting online examinations.
+        </p>
+
+        <a href="#login"
+           class="hero-btn">
+            Get Started
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT / FEATURES
+===================================================== -->
+
+<section id="about"
+         class="features-section">
+
+    <h2>
+        Why Use ExamPro?
+    </h2>
+
+    <div class="features">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📝
+            </div>
+
+            <h3>
+                Online Exams
+            </h3>
+
+            <p>
+                Attend examinations online
+                from anywhere.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ⏱️
+            </div>
+
+            <h3>
+                Timer
+            </h3>
+
+            <p>
+                Complete your examination
+                within the given time.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>
+                Instant Results
+            </h3>
+
+            <p>
+                View your examination score
+                immediately after submission.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🔐
+            </div>
+
+            <h3>
+                Admin Control
+            </h3>
+
+            <p>
+                Administrators can create exams
+                and manage questions.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<section id="login"
+         class="auth-section">
+
+    <div class="auth-box">
+
+        <h2>
+            Student Login
+        </h2>
+
+        <p class="auth-subtitle">
+            Login to attend your examination
+        </p>
+
+        <input
+            type="email"
+            id="loginEmail"
+            placeholder="Enter Email"
+        >
+
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter Password"
+        >
+
+        <button onclick="studentLogin()">
+            Login
+        </button>
+
+        <p>
+            Don't have an account?
+
+            <a href="#register"
+               onclick="showRegister()">
+                Register
+            </a>
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     REGISTRATION
+===================================================== -->
+
+<section id="register"
+         class="auth-section hidden">
+
+    <div class="auth-box">
+
+        <h2>
+            Student Registration
+        </h2>
+
+        <p class="auth-subtitle">
+            Create your student account
+        </p>
+
+        <input
+            type="text"
+            id="registerName"
+            placeholder="Full Name"
+        >
+
+        <input
+            type="email"
+            id="registerEmail"
+            placeholder="Email Address"
+        >
+
+        <input
+            type="password"
+            id="registerPassword"
+            placeholder="Password"
+        >
+
+        <button onclick="registerStudent()">
+            Register
+        </button>
+
+        <p>
+            Already have an account?
+
+            <a href="#login"
+               onclick="showLogin()">
+                Login
+            </a>
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     AVAILABLE EXAMS
+===================================================== -->
+
+<section id="examStartBox"
+         class="exam-start-section hidden">
+
+</section>
+
+
+<!-- =====================================================
+     EXAM
+===================================================== -->
+
+<section id="examSection"
+         class="exam-section hidden">
+
+    <div class="exam-header">
+
+        <div>
+
+            <h2 id="examTitle">
+                Online Examination
+            </h2>
+
+            <p id="examDescription">
+                Answer all questions carefully.
+            </p>
+
+        </div>
+
+
+        <div class="timer-box">
+
+            <span>
+                Time Left
+            </span>
+
+            <strong id="timer">
+                10:00
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="exam-container">
+
+        <!-- QUESTION AREA -->
+
+        <div class="question-area">
+
+            <div class="question-number">
+
+                Question
+
+                <span id="questionNumber">
+                    1
+                </span>
+
+                of
+
+                <span id="totalQuestions">
+                    5
+                </span>
+
+            </div>
+
+
+            <h3 id="questionText">
+                Question will appear here
+            </h3>
+
+
+            <div id="options"
+                 class="options-container">
+            </div>
+
+
+            <div class="exam-buttons">
+
+                <button
+                    id="previousBtn"
+                    onclick="previousQuestion()">
+
+                    Previous
+
+                </button>
+
+
+                <button
+                    id="nextBtn"
+                    onclick="nextQuestion()">
+
+                    Next
+
+                </button>
+
+
+                <button
+                    id="submitBtn"
+                    class="submit-btn"
+                    onclick="submitExam()">
+
+                    Submit Exam
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUESTION PALETTE -->
+
+        <div class="question-palette">
+
+            <h3>
+                Questions
+            </h3>
+
+            <p class="palette-info">
+                Click a number to navigate
+            </p>
+
+            <div id="palette">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     RESULT
+===================================================== -->
+
+<section id="resultSection"
+         class="result-section hidden">
+
+    <div class="result-card-student">
+
+        <div class="result-icon">
+            🎉
+        </div>
+
+        <h2>
+            Examination Completed
+        </h2>
+
+        <p>
+            Your examination has been submitted successfully.
+        </p>
+
+
+        <div class="result-details">
+
+            <div class="result-item">
+
+                <span>
+                    Student
+                </span>
+
+                <strong id="resultName">
+                    Student
+                </strong>
+
+            </div>
+
+
+            <div class="result-item">
+
+                <span>
+                    Score
+                </span>
+
+                <strong id="resultScore">
+                    0 / 0
+                </strong>
+
+            </div>
+
+
+            <div class="result-item">
+
+                <span>
+                    Percentage
+                </span>
+
+                <strong id="resultPercentage">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="result-item">
+
+                <span>
+                    Status
+                </span>
+
+                <strong id="resultStatus">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <button
+            onclick="retakeExam()">
+
+            Retake Exam
+
+        </button>
+
+
+        <button
+            class="logout-btn"
+            onclick="studentLogout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <h3>
+            ExamPro
+        </h3>
+
+        <p>
+            Online Examination System
+        </p>
+
+        <p>
+            © 2026 ExamPro. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

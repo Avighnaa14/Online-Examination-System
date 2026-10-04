@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ExamPro - Admin</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     ADMIN LOGIN
+===================================================== -->
+
+<div id="adminLogin"
+     class="admin-login">
+
+    <div class="admin-login-box">
+
+        <div class="admin-logo">
+            Exam<span>Pro</span>
+        </div>
+
+        <h2>
+            Administrator Login
+        </h2>
+
+        <p>
+            Manage examinations and students
+        </p>
+
+
+        <input
+            type="text"
+            id="adminUsername"
+            placeholder="Username"
+        >
+
+
+        <input
+            type="password"
+            id="adminPassword"
+            placeholder="Password"
+        >
+
+
+        <button onclick="adminLogin()">
+            Login
+        </button>
+
+
+        <div class="demo-login">
+
+            <p>
+                Demo Username:
+                <strong>admin</strong>
+            </p>
+
+            <p>
+                Demo Password:
+                <strong>admin123</strong>
+            </p>
+
+        </div>
+
+
+        <a href="index.html">
+            ← Back to Student Website
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     ADMIN DASHBOARD
+===================================================== -->
+
+<div id="adminDashboard"
+     class="hidden">
+
+
+    <!-- NAVBAR -->
+
+    <nav class="admin-navbar">
+
+        <div class="admin-brand">
+            Exam<span>Pro</span>
+            <small>
+                Admin Panel
+            </small>
+        </div>
+
+
+        <div class="admin-nav-buttons">
+
+            <button
+                onclick="showPanel('dashboardPanel')">
+
+                Dashboard
+
+            </button>
+
+
+            <button
+                onclick="showPanel('examPanel')">
+
+                Create Exam
+
+            </button>
+
+
+            <button
+                onclick="showPanel('questionPanel')">
+
+                Questions
+
+            </button>
+
+
+            <button
+                onclick="showPanel('studentPanel')">
+
+                Students
+
+            </button>
+
+
+            <button
+                onclick="showPanel('resultPanel')">
+
+                Results
+
+            </button>
+
+
+            <button
+                class="logout-admin"
+                onclick="adminLogout()">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =================================================
+         DASHBOARD
+    ================================================== -->
+
+    <section id="dashboardPanel"
+             class="admin-panel">
+
+        <div class="admin-title">
+
+            <h1>
+                Dashboard
+            </h1>
+
+            <p>
+                Welcome to the ExamPro administration panel.
+            </p>
+
+        </div>
+
+
+        <div class="admin-stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <h3>
+                    Total Exams
+                </h3>
+
+                <p id="totalExams">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📝
+                </div>
+
+                <h3>
+                    Total Questions
+                </h3>
+
+                <p id="totalQuestions">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👨‍🎓
+                </div>
+
+                <h3>
+                    Students
+                </h3>
+
+                <p id="totalStudents">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Results
+                </h3>
+
+                <p id="totalResults">
+                    0
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-welcome">
+
+            <h2>
+                Quick Start
+            </h2>
+
+            <p>
+                1. Create an examination
+            </p>
+
+            <p>
+                2. Add questions
+            </p>
+
+            <p>
+                3. Ask students to register and login
+            </p>
+
+            <p>
+                4. Students can attend the examination
+            </p>
+
+            <p>
+                5. View results from the Results section
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         CREATE EXAM
+    ================================================== -->
+
+    <section id="examPanel"
+             class="admin-panel hidden">
+
+        <div class="admin-title">
+
+            <h1>
+                Create Examination
+            </h1>
+
+            <p>
+                Create the examination students will attend.
+            </p>
+
+        </div>
+
+
+        <div class="admin-form-card">
+
+            <label>
+                Examination Name
+            </label>
+
+            <input
+                type="text"
+                id="examName"
+                placeholder="Example: Java Programming Test"
+            >
+
+
+            <label>
+                Description
+            </label>
+
+            <textarea
+                id="examDescription"
+                placeholder="Enter examination description"
+            ></textarea>
+
+
+            <label>
+                Duration (Minutes)
+            </label>
+
+            <input
+                type="number"
+                id="examDuration"
+                placeholder="10"
+                min="1"
+            >
+
+
+            <label>
+                Total Marks
+            </label>
+
+            <input
+                type="number"
+                id="examMarks"
+                placeholder="5"
+                min="1"
+            >
+
+
+            <button
+                class="primary-admin-btn"
+                onclick="createExam()">
+
+                Create Examination
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         QUESTIONS
+    ================================================== -->
+
+    <section id="questionPanel"
+             class="admin-panel hidden">
+
+        <div class="admin-title">
+
+            <h1>
+                Manage Questions
+            </h1>
+
+            <p>
+                Add questions for the examination.
+            </p>
+
+        </div>
+
+
+        <!-- Existing Questions -->
+
+        <div class="questions-section">
+
+            <h2>
+                Existing Questions
+            </h2>
+
+            <div id="questionsList">
+            </div>
+
+        </div>
+
+
+        <!-- Add Question -->
+
+        <div class="admin-form-card">
+
+            <h2>
+                Add New Question
+            </h2>
+
+
+            <label>
+                Question
+            </label>
+
+            <textarea
+                id="questionText"
+                placeholder="Enter your question"
+            ></textarea>
+
+
+            <label>
+                Option A
+            </label>
+
+            <input
+                type="text"
+                id="optionA"
+                placeholder="Option A"
+            >
+
+
+            <label>
+                Option B
+            </label>
+
+            <input
+                type="text"
+                id="optionB"
+                placeholder="Option B"
+            >
+
+
+            <label>
+                Option C
+            </label>
+
+            <input
+                type="text"
+                id="optionC"
+                placeholder="Option C"
+            >
+
+
+            <label>
+                Option D
+            </label>
+
+            <input
+                type="text"
+                id="optionD"
+                placeholder="Option D"
+            >
+
+
+            <label>
+                Correct Answer
+            </label>
+
+            <select id="correctAnswer">
+
+                <option value="">
+                    Select Correct Answer
+                </option>
+
+                <option value="A">
+                    A
+                </option>
+
+                <option value="B">
+                    B
+                </option>
+
+                <option value="C">
+                    C
+                </option>
+
+                <option value="D">
+                    D
+                </option>
+
+            </select>
+
+
+            <button
+                class="primary-admin-btn"
+                onclick="addQuestion()">
+
+                Add Question
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         STUDENTS
+    ================================================== -->
+
+    <section id="studentPanel"
+             class="admin-panel hidden">
+
+        <div class="admin-title">
+
+            <h1>
+                Registered Students
+            </h1>
+
+            <p>
+                Students registered in the system.
+            </p>
+
+        </div>
+
+
+        <div id="studentsList">
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         RESULTS
+    ================================================== -->
+
+    <section id="resultPanel"
+             class="admin-panel hidden">
+
+        <div class="admin-title">
+
+            <h1>
+                Examination Results
+            </h1>
+
+            <p>
+                View the latest examination result.
+            </p>
+
+        </div>
+
+
+        <div id="resultsList">
+        </div>
+
+    </section>
+
+
+</div>
+
+
+
+<script src="admin.js"></script>
+
+</body>
+
+</html>
