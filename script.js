@@ -1,10 +1,8 @@
 // =====================================================
 // EXAMPRO - STUDENT JAVASCRIPT
 // =====================================================
-
 const API_BASE =
-    "http://localhost:8080/online-exam";
-
+    "https://online-examination-system-web.onrender.com/online-exam";
 
 // =====================================================
 // VARIABLES
